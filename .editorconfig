@@ -1,0 +1,33 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = false
+max_line_length = 110
+tab_width = 4
+ij_any_wrap_long_lines = true
+ij_wrap_on_typing = true
+ij_any_method_parameters_new_line_after_left_paren = true
+
+
+[*.java]
+ij_java_wrap_long_lines = true
+ij_java_wrap_first_method_in_call_chain = true
+ij_java_method_parameters_wrap = split_into_lines
+ij_java_method_call_chain_wrap = on_every_item
+
+[*.yml]
+indent_size = 2
+
+[{*.ts,*.tsx,*.js,*.jsx}]
+ij_typescript_use_double_quotes = false
+ij_javascript_use_double_quotes = false
+ij_typescript_force_quote_style = true
+ij_typescript_import_sort_members = true
+ij_javascript_force_semicolon_style = true
+ij_typescript_force_semicolon_style = true
+ij_typescript_align_multiline_parameters = false
+ij_javascript_align_multiline_parameters = false
