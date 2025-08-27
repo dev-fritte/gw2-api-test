@@ -14,7 +14,7 @@ function RouteComponent() {
     console.log('legendaries', legendaries)
 
     return (
-        <div className={'p-5'}>
+        <div className={'flex flex-col gap-6 p-5'}>
             <h1>Legendary Items</h1>
             <div className={'flex flex-wrap gap-2'}>
                 {legendaries?.map((leggy: Item) => <ItemPreview key={leggy.id} item={leggy}/>)}

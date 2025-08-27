@@ -6,6 +6,7 @@ export type Item = {
     rarity: ItemRarity,
     icon: string,
     level: number,
+    description: string,
     chat_link: string,
 }
 
