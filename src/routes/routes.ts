@@ -17,8 +17,8 @@ export const routes = [
         icon: Sparkle,
     },
     {
-        title: 'About',
-        path: '/about',
+        title: 'Account',
+        path: '/account',
         icon: CircleUser,
     }
 ]

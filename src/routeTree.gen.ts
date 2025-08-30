@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LegendaryRouteImport } from './routes/legendary'
 import { Route as DailyRouteImport } from './routes/daily'
-import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
 
 const LegendaryRoute = LegendaryRouteImport.update({
@@ -24,9 +24,9 @@ const DailyRoute = DailyRouteImport.update({
   path: '/daily',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,34 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
   '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/daily' | '/legendary'
+  fullPaths: '/' | '/account' | '/daily' | '/legendary'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/daily' | '/legendary'
-  id: '__root__' | '/' | '/about' | '/daily' | '/legendary'
+  to: '/' | '/account' | '/daily' | '/legendary'
+  id: '__root__' | '/' | '/account' | '/daily' | '/legendary'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  AccountRoute: typeof AccountRoute
   DailyRoute: typeof DailyRoute
   LegendaryRoute: typeof LegendaryRoute
 }
@@ -85,11 +85,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DailyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,7 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  AccountRoute: AccountRoute,
   DailyRoute: DailyRoute,
   LegendaryRoute: LegendaryRoute,
 }
