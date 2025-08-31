@@ -3,6 +3,9 @@ import { Input } from '@/components/ui/input.tsx'
 import useLocalStorage from '@/hooks/useLocalStorage.ts'
 import { Button } from '@/components/ui/button.tsx'
 import { Form, useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { DeleteIcon } from 'lucide-react'
+import { AccountInfo } from '@/account/AccountInfo.tsx'
 
 export const Route = createFileRoute('/account')({
     component: RouteComponent,
@@ -23,6 +26,12 @@ function RouteComponent() {
 
     const saveApiKey = (data: FormData) => {
         setApiKey(data.apiKey)
+        toast('API Key saved')
+    }
+
+    const resetApiKey = () => {
+        setApiKey(null)
+        form.reset({apiKey: ''})
     }
 
     return <div className={'flex flex-col gap-10 p-10'}>
@@ -31,11 +40,20 @@ function RouteComponent() {
             <Form control={form.control}
                   onSubmit={({data}) => saveApiKey(data)}
                   className={'flex flex-col gap-4'}>
-                <Input className={'w-80'} placeholder={'API Key'} {...form.register('apiKey')}/>
+                <div className={'flex gap-2 items-center'}>
+                    <Input className={'w-80'} placeholder={'API Key'} {...form.register('apiKey')}/>
+                    {apiKey && (
+                        <Button size={'icon'} variant={'secondary'} onClick={resetApiKey}>
+                            <DeleteIcon />
+                        </Button>
+                    )}
+                </div>
                 <Button type={'submit'}>
                     Save
                 </Button>
             </Form>
         </div>
+
+        <AccountInfo />
     </div>
 }
