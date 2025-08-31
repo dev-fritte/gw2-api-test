@@ -1,4 +1,4 @@
-import {CircleUser, ClipboardCheckIcon, Home, Sparkle} from 'lucide-react'
+import { CircleUser, ClipboardCheckIcon, Home, Sparkle, User } from 'lucide-react'
 
 export const routes = [
     {
@@ -10,6 +10,11 @@ export const routes = [
         title: 'Dailies',
         path: '/daily',
         icon: ClipboardCheckIcon,
+    },
+    {
+        title: 'Characters',
+        path: '/characters',
+        icon: User,
     },
     {
         title: 'Legendary Equipment',

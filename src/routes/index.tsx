@@ -1,5 +1,6 @@
 import {createFileRoute} from '@tanstack/react-router'
 import {useWvwRanks} from '../wvw/wvw-queries.ts'
+import { useProfessions } from '@/profession/profession-queries.ts'
 
 export const Route = createFileRoute('/')({
     component: Index,
@@ -7,9 +8,13 @@ export const Route = createFileRoute('/')({
 
 function Index() {
 
-    const wvwRankQuery = useWvwRanks()
+    // const wvwRankQuery = useWvwRanks()
+    //
+    // console.log('wvwRankQuery', wvwRankQuery)
 
-    console.log('wvwRankQuery', wvwRankQuery)
+    const {data: professions} = useProfessions()
+
+    console.log('professions', professions)
 
     return (
         <div className="p-2">
