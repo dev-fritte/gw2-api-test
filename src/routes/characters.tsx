@@ -22,10 +22,11 @@ function RouteComponent() {
                 )
                 : (
                     <div className={'flex gap-3 flex-wrap'}>
-                        {characters?.map((character) => <CharacterCard key={character?.id}
-                                                                       character={character}/>)}
+                        {characters?.sort((a, b) => b.age - a.age)
+                            .map((character) => <CharacterCard key={character?.name} character={character}/>)}
                     </div>
-                )}
+                )
+            }
         </div>
     )
 }

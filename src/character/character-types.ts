@@ -21,4 +21,6 @@ export enum ProfessionEnum {
     WARRIOR = 'Warrior',
     ELEMENTALIST = 'Elementalist',
     RANGER = 'Ranger',
+    GUARDIAN = 'Guardian',
+    REVENANT = 'Revenant',
 }
