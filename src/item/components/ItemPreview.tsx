@@ -24,7 +24,7 @@ export const ItemPreview = ({item}: ItemPreviewProps) => {
                         <h3 className={'nowrap'}>{item.name}</h3>
                     </div>
                     <p dangerouslySetInnerHTML={{__html: item.description}}/>
-                    <p>{item.rarity}</p>
+                    <p className={'text-sm'} style={{color: getItemRarityColor(item.rarity)}}>{item.rarity}</p>
                 </div>
             </HoverCardContent>
 
