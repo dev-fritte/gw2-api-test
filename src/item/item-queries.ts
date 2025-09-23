@@ -1,13 +1,28 @@
 import {useQuery} from '@tanstack/react-query'
 
 import {BASE_URL} from '../utils/api-utils.ts'
+import {useApiKey} from '@/hooks/useApiKey.ts'
 
 export const useLegendaries = () => useQuery({
     queryKey: ['legendaries'],
     queryFn: async () => fetch(`${BASE_URL}/legendaryarmory`)
         .then(res => res.json())
-        .then(res => fetch(`${BASE_URL}/items?ids=${res}`).then(res => res.json()))
+        .then(res => fetch(`${BASE_URL}/items?ids=${res}`).then(res => res.json())),
+    gcTime: 1000 * 60 * 5,
 })
+
+export const useAccountLegendaries = () => {
+
+    const apiKey = useApiKey();
+
+    return useQuery<{id: number, count: number}[]>({
+        enabled: apiKey !== null,
+        queryKey: ['account-legendaries'],
+        queryFn: async () => fetch(`${BASE_URL}/account/legendaryarmory?access_token=${apiKey}`)
+            .then(res => res.json()),
+        gcTime: 1000 * 60 * 5,
+    })
+}
 
 export const useItem = (itemId: number) => useQuery({
     queryKey: ['item', itemId],
