@@ -4,16 +4,18 @@ import {HoverCard, HoverCardContent, HoverCardTrigger} from '@/components/ui/hov
 
 type ItemPreviewProps = {
     item: Item;
+    unlocked?: boolean,
 }
 
-export const ItemPreview = ({item}: ItemPreviewProps) => {
+export const ItemPreview = ({item, unlocked}: ItemPreviewProps) => {
 
 
     return (
         <HoverCard>
             <HoverCardTrigger>
                 <div style={{border: `2px solid ${getItemRarityColor(item.rarity)}`}} className={`w-15 h-15`}>
-                    <img src={item.icon} alt={`item <${item.name}> icon`}/>
+                    <img src={item.icon} alt={`item <${item.name}> icon`} style={{filter: `grayscale(${unlocked ? 0 : '100%'})`,}}/>
+                    {unlocked && <ItemUnlockedMarker />}
                 </div>
             </HoverCardTrigger>
 
@@ -24,10 +26,27 @@ export const ItemPreview = ({item}: ItemPreviewProps) => {
                         <h3 className={'nowrap'}>{item.name}</h3>
                     </div>
                     <p dangerouslySetInnerHTML={{__html: item.description}}/>
-                    <p className={'text-sm'} style={{color: getItemRarityColor(item.rarity)}}>{item.rarity}</p>
+                    <p className={'text-sm'}
+                       style={{color: getItemRarityColor(item.rarity)}}>{item.rarity}</p>
                 </div>
             </HoverCardContent>
 
         </HoverCard>
+    )
+}
+
+const ItemUnlockedMarker = () => {
+    return (
+        <div style={{
+            position: 'relative',
+            bottom: 20,
+            right: 2,
+            width: 0,
+            height: 0,
+            borderTop: '15px solid transparent',
+            borderBottom: '15px solid transparent',
+            borderLeft: '15px solid green',
+            transform: 'rotate(135deg)',
+        }}/>
     )
 }
