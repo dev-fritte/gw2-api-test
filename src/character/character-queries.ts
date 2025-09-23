@@ -15,5 +15,6 @@ export const useCharacters = () => {
                 .then(res => res.json())
                 .then(res => res as Character[])
         },
+        gcTime: 1000 * 60 * 60
     })
 }
