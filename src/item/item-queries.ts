@@ -2,8 +2,9 @@ import {useQuery} from '@tanstack/react-query'
 
 import {BASE_URL} from '../utils/api-utils.ts'
 import {useApiKey} from '@/hooks/useApiKey.ts'
+import type {Item} from '@/item/types.ts'
 
-export const useLegendaries = () => useQuery({
+export const useLegendaries = () => useQuery<Item[]>({
     queryKey: ['legendaries'],
     queryFn: async () => fetch(`${BASE_URL}/legendaryarmory`)
         .then(res => res.json())
