@@ -1,4 +1,3 @@
-
 export type Item = {
     id: number,
     name: string,
@@ -10,9 +9,9 @@ export type Item = {
     chat_link: string,
 }
 
-enum ItemType {
-    WEAPON,
-    ARMOR,
+export enum ItemType {
+    WEAPON = 'weapon',
+    ARMOR = 'armor',
 }
 
 export enum ItemRarity {
