@@ -1,6 +1,5 @@
 import {createFileRoute} from '@tanstack/react-router'
-import {useWvwRanks} from '../wvw/wvw-queries.ts'
-import { useProfessions } from '@/profession/profession-queries.ts'
+import {useProfessions} from '@/profession/profession-queries.ts'
 
 export const Route = createFileRoute('/')({
     component: Index,

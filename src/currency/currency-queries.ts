@@ -1,6 +1,5 @@
-import {useQuery} from 'react-query'
-
 import {BASE_URL} from '../utils/api-utils.ts'
+import {useQuery} from '@tanstack/react-query'
 
 export const useCurrencies = () => useQuery({
     queryKey: ['currencies'],
