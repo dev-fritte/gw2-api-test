@@ -15,13 +15,19 @@ function RouteComponent() {
     console.log('legendaries', legendaries, accountLegendaries)
 
 
-
     return (
         <div className={'flex flex-col gap-6 p-5'}>
             <h1>Legendary Items</h1>
             <div className={'flex flex-wrap gap-2'}>
-                {legendaries?.map((leggy: Item) => <ItemPreview key={leggy.id} item={leggy}
-                                                                unlocked={!!accountLegendaries?.find(l => l.id === leggy.id)}/>)}
+                {legendaries?.map((leggy: Item) => {
+
+                        const unlocked = accountLegendaries?.find(l => l.id === leggy.id)
+                        return <ItemPreview key={leggy.id} item={leggy}
+                                            unlocked={!!unlocked}
+                                            amount={unlocked && String(unlocked?.count)}
+                        />
+                    }
+                )}
             </div>
         </div>
     )
