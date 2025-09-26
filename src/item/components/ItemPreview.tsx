@@ -21,8 +21,8 @@ export const ItemPreview = ({item, unlocked, amount}: ItemPreviewProps) => {
                 </div>
             </HoverCardTrigger>
 
-            <HoverCardContent>
-                <div className={'flex flex-col gap-2 w-60'}>
+            <HoverCardContent align={'start'}>
+                <div className={'flex flex-col gap-2 p-2'}>
                     <div className={'flex gap-2'}>
                         <img src={item.icon} alt={`item <${item.name}> icon`}/>
                         <h3 className={'nowrap'}>{item.name}</h3>
