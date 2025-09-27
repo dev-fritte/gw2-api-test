@@ -6,6 +6,7 @@ import {type Item} from '@/item/types.ts'
 import {type ItemTypeFilterValue, ItemTypeSelect} from '@/item/components/ItemTypeSelect.tsx'
 import {useMemo, useState} from 'react'
 import {filterByItemType} from '@/item/item-utils.ts'
+import {WeaponMissingCard} from '@/legendaries/components/WeaponMissingCard.tsx'
 
 export const Route = createFileRoute('/legendary')({
     component: RouteComponent,
@@ -24,7 +25,7 @@ function RouteComponent() {
             filterByItemType(legendaries, itemTypeFilter)
         ,[legendaries, itemTypeFilter])
 
-    console.log('legendaryes', legendariesFiltered)
+    // console.log('legendaryes', legendariesFiltered)
 
     return (
         <div className={'flex flex-col gap-6 p-5'}>
@@ -36,6 +37,8 @@ function RouteComponent() {
                     <p>{`${accountLegendaries?.length}/${legendaries?.length}`}</p>
                 </div>
             </div>
+
+            <WeaponMissingCard />
 
             <ItemTypeSelect onChange={setItemTypeFilter}/>
 
