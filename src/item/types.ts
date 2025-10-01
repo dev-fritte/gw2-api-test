@@ -23,8 +23,8 @@ export interface Weapon extends Item {
 }
 
 export enum ItemType {
-    WEAPON = 'weapon',
-    ARMOR = 'armor',
+    WEAPON = 'Weapon',
+    ARMOR = 'Armor',
 }
 
 export enum ItemRarity {
