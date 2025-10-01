@@ -34,7 +34,7 @@ export const useEquipmentTabs = () => {
 
 //maybe split this to use /items/ids=[...] endpoint.
 export const useItemsForCharacterEquipmentTabs = (characterEquipments: CharacterEquipments[], slotFilter?: EquipmentSlot[]) => {
-    return useQueries<Item[]>({
+    return useQueries<number[]>({
         queries: characterEquipments.reduce<EquipmentTab[]>((equipmentArray, {equipmentTabs}) => {
             equipmentTabs.forEach(e => equipmentArray.push(e))
             return equipmentArray
