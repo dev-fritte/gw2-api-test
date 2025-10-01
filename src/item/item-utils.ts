@@ -1,4 +1,4 @@
-import {type Item, ItemRarity} from '@/item/types.ts'
+import {type Item, ItemRarity, ItemType, type Weapon} from '@/item/types.ts'
 import colors from '@/utils/colors'
 import type {ItemTypeFilterValue} from '@/item/components/ItemTypeSelect.tsx'
 
@@ -17,4 +17,8 @@ export const filterByItemType = (items: Item[] | undefined, filter: ItemTypeFilt
     return items?.filter(l => {
         return l.type?.toLowerCase() === filter?.toLowerCase()
     })
+}
+
+export function isWeapon(item: Item): item is Weapon {
+    return item.type === ItemType.WEAPON
 }
