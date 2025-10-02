@@ -25,7 +25,7 @@ function RouteComponent() {
             filterByItemType(legendaries, itemTypeFilter)
         ,[legendaries, itemTypeFilter])
 
-    // console.log('legendaryes', legendariesFiltered)
+    // console.log('legendaries', legendariesFiltered)
 
     return (
         <div className={'flex flex-col gap-6 p-5'}>
