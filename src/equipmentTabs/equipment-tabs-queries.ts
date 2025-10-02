@@ -8,6 +8,7 @@ import type {Item} from '@/item/types.ts'
 
 export const useEquipmentTabs = () => {
 
+    //TODO: change characters to parameter, so you can disable some you dont want to load
     const apiKey = useApiKey()
     const {data} = useCharacters()
 
