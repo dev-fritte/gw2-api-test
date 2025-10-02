@@ -71,3 +71,8 @@ export enum DamageType {
     PHYSICAL = 'Physical',
     CHOKING = 'Choking',
 }
+
+export type LegendaryItemWithCount = {
+    item: Item,
+    count: number,
+}
