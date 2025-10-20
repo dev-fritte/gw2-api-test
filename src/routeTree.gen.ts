@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LegendaryFinderRouteImport } from './routes/legendary-finder'
 import { Route as LegendaryRouteImport } from './routes/legendary'
 import { Route as DailyRouteImport } from './routes/daily'
 import { Route as CharactersRouteImport } from './routes/characters'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
 
+const LegendaryFinderRoute = LegendaryFinderRouteImport.update({
+  id: '/legendary-finder',
+  path: '/legendary-finder',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LegendaryRoute = LegendaryRouteImport.update({
   id: '/legendary',
   path: '/legendary',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/characters': typeof CharactersRoute
   '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
+  '/legendary-finder': typeof LegendaryFinderRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/characters': typeof CharactersRoute
   '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
+  '/legendary-finder': typeof LegendaryFinderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,33 @@ export interface FileRoutesById {
   '/characters': typeof CharactersRoute
   '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
+  '/legendary-finder': typeof LegendaryFinderRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/account' | '/characters' | '/daily' | '/legendary'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/characters'
+    | '/daily'
+    | '/legendary'
+    | '/legendary-finder'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/account' | '/characters' | '/daily' | '/legendary'
-  id: '__root__' | '/' | '/account' | '/characters' | '/daily' | '/legendary'
+  to:
+    | '/'
+    | '/account'
+    | '/characters'
+    | '/daily'
+    | '/legendary'
+    | '/legendary-finder'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/characters'
+    | '/daily'
+    | '/legendary'
+    | '/legendary-finder'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +105,18 @@ export interface RootRouteChildren {
   CharactersRoute: typeof CharactersRoute
   DailyRoute: typeof DailyRoute
   LegendaryRoute: typeof LegendaryRoute
+  LegendaryFinderRoute: typeof LegendaryFinderRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/legendary-finder': {
+      id: '/legendary-finder'
+      path: '/legendary-finder'
+      fullPath: '/legendary-finder'
+      preLoaderRoute: typeof LegendaryFinderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legendary': {
       id: '/legendary'
       path: '/legendary'
@@ -125,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   CharactersRoute: CharactersRoute,
   DailyRoute: DailyRoute,
   LegendaryRoute: LegendaryRoute,
+  LegendaryFinderRoute: LegendaryFinderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

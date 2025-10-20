@@ -1,4 +1,4 @@
-import { CircleUser, ClipboardCheckIcon, Home, Sparkle, User } from 'lucide-react'
+import {CircleUser, ClipboardCheckIcon, Home, Radar, Sparkle, User} from 'lucide-react'
 
 export const routes = [
     {
@@ -22,8 +22,13 @@ export const routes = [
         icon: Sparkle,
     },
     {
+        title: 'Legendary Finder',
+        path: '/legendary-finder',
+        icon: Radar,
+    },
+    {
         title: 'Account',
         path: '/account',
         icon: CircleUser,
-    }
+    },
 ]
