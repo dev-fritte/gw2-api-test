@@ -1,36 +1,63 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import type {Character} from '@/character/character-types.ts'
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/components/ui/table.tsx'
-import {type ColumnDef, flexRender, getCoreRowModel, useReactTable} from '@tanstack/react-table'
+import {
+    type ColumnDef,
+    flexRender,
+    getCoreRowModel, type OnChangeFn,
+    type RowSelectionState,
+    useReactTable
+} from '@tanstack/react-table'
+import {Checkbox} from '@/components/ui/checkbox.tsx'
 
 type CharacterTableProps = {
-    characters: Character[] | undefined
+    characters: Character[] | undefined,
+    rowSelection: RowSelectionState,
+    onSelectionChange: OnChangeFn<RowSelectionState>
 }
 
 type CharacterColumn = Pick<Character, 'name' | 'profession' | 'created' | 'age'>
 
-export const CharacterTable: React.FC<CharacterTableProps> = ({characters}) => {
+export const CharacterTable: React.FC<CharacterTableProps> = ({characters, rowSelection, onSelectionChange}) => {
 
     const columns: ColumnDef<CharacterColumn>[] = [
         {
-            accessorKey: "name",
-            header: "Name",
+            id: 'selection',
+            cell: (({row}) => (
+                <Checkbox
+                    checked={row.getIsSelected()}
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
+            ))
         },
         {
-            accessorKey: "profession",
-            header: "Profession",
+            accessorKey: 'name',
+            header: 'Name',
         },
         {
-            accessorKey: "age",
-            header: "Playtime",
+            accessorKey: 'profession',
+            header: 'Profession',
+        },
+        {
+            accessorKey: 'age',
+            header: 'Playtime',
             cell: (cell) => `${(Number(cell.getValue()) / 3600).toFixed(1)} h`,
         }
     ]
 
+    const sortedData = useMemo(() => characters?.toSorted((a, b) => b.age - a.age), [characters])
+
+    console.log(sortedData)
+
     const table = useReactTable<CharacterColumn>({
-        data: characters || [],
+        data: sortedData || [],
         columns,
+        onRowSelectionChange: onSelectionChange,
         getCoreRowModel: getCoreRowModel(),
+        state: {
+            rowSelection,
+        },
     })
 
     return (
@@ -60,7 +87,7 @@ export const CharacterTable: React.FC<CharacterTableProps> = ({characters}) => {
                         table.getRowModel().rows.map((row) => (
                             <TableRow
                                 key={row.id}
-                                data-state={row.getIsSelected() && "selected"}
+                                data-state={row.getIsSelected() && 'selected'}
                             >
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id}>
