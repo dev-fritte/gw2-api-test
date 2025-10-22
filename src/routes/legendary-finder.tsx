@@ -13,18 +13,14 @@ function RouteComponent() {
     const {data: characters, isLoading: charactersLoading} = useCharacters();
     const [characterSelection, setCharacterSelection] = useState<Record<string, boolean>>({})
 
-    console.log(characterSelection)
+    useEffect(() => {
+        if(!characters) {
+            return
+        }
 
-    //TODO: fix selection type and auto-select everything when characters are loaded
-
-    // useEffect(() => {
-    //     if(!characters) {
-    //         return
-    //     }
-    //
-    //     const selection: Record<string, boolean> = characters.map((_, index) => ({[String(index)]: true}))
-    //     setCharacterSelection(selection);
-    // }, [characters])
+        const selection: Record<string, boolean> = characters.reduce((result, _, index) => ({...result, [`${index}`]: true}), {})
+        setCharacterSelection(selection);
+    }, [characters])
 
     if(charactersLoading) {
         return 'Loading...'
