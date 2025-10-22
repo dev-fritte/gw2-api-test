@@ -8,7 +8,7 @@ export const Route = createRootRoute({
         <>
             <SidebarProvider>
                 <AppSidebar/>
-                <main>
+                <main style={{width: '100%'}}>
                     <SidebarTrigger/>
                     <Outlet/>
                 </main>

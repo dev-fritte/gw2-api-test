@@ -27,7 +27,7 @@ function RouteComponent() {
     }
 
     return (
-        <div className={'flex flex-col gap-6 p-5'}>
+        <div className={'w-[600px] flex flex-col gap-6 p-5'}>
             <h1 className={'text-2xl'}>Legendary Finder</h1>
 
             <CharacterTable characters={characters} rowSelection={characterSelection} onSelectionChange={setCharacterSelection} />
