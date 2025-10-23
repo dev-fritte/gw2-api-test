@@ -3,9 +3,11 @@ import {useMemo} from 'react'
 import {type CharacterEquipments} from '@/equipmentTabs/equipment-types.ts'
 import {equipmentWeaponSlots} from '@/equipmentTabs/equipment-utils.ts'
 import {type Item, ItemRarity, type Weapon, WeaponType} from '@/item/types.ts'
-import {getWeaponTypeIcon, isWeapon} from '@/item/item-utils.ts'
+import {getWeaponTypeIconUrl, isWeapon} from '@/item/item-utils.ts'
 import {useAccountLegendaryItems} from '@/item/item-queries.ts'
 import type {Character} from '@/character/character-types.ts'
+
+const ICON_SIZE = 40;
 
 type WeaponMissingCardProps = {
     characters: Character[]
@@ -68,12 +70,12 @@ export const WeaponMissingCard = ({characters}: WeaponMissingCardProps) => {
     }
 
     return (
-        <div className={'flex flex-col bg-accent rounded-md w-full'}>
+        <div className={'flex flex-col bg-accent rounded-md w-full gap-1'}>
             {[...weaponEquipmentMap]
                 .sort((a, b) => b[1] - a[1])
                 .map(([type, count]) => (
-                        <div key={type} className={'flex gap-2'}>
-                            <img src={getWeaponTypeIcon(type)} alt={``}/>
+                        <div key={type} className={'flex gap-2 items-center'}>
+                            <img src={getWeaponTypeIconUrl(type)} alt={`weapon type icon ${type}`} width={ICON_SIZE} height={ICON_SIZE} />
                             <p>{type}</p>
                             <p>{count}</p>
                         </div>

@@ -24,11 +24,11 @@ export function isWeapon(item: Item): item is Weapon {
 }
 
 //TODO: return correct icon for weapon type
-export const getWeaponTypeIcon: (weaponType: keyof typeof WeaponType) => string = (weaponType: keyof typeof WeaponType) => {
+export const getWeaponTypeIconUrl: (weaponType: keyof typeof WeaponType) => string = (weaponType: keyof typeof WeaponType) => {
     return WeaponTypeIcons[weaponType]
 }
 
-const WeaponTypeIcons = {
+const WeaponTypeIcons: Record<WeaponType, string> = {
     [WeaponType.AXE]: 'https://wiki.guildwars2.com/images/1/18/Frostfang.png',
     [WeaponType.DAGGER]: 'https://wiki.guildwars2.com/images/5/5b/Incinerator.png',
     [WeaponType.MACE]: 'https://wiki.guildwars2.com/images/3/36/The_Moot.png',
