@@ -2,17 +2,14 @@ import {useApiKey} from '@/hooks/useApiKey.ts'
 import {useQueries, useQuery} from '@tanstack/react-query'
 import {BASE_URL} from '@/utils/api-utils.ts'
 import type {Character} from '@/character/character-types.ts'
-import {useCharacter, useCharacters} from '@/character/character-queries.ts'
+import {useCharacter} from '@/character/character-queries.ts'
 import {type CharacterEquipments, EquipmentSlot, type EquipmentTab} from '@/equipmentTabs/equipment-types.ts'
 import type {Item} from '@/item/types.ts'
 
-export const useEquipmentTabs = () => {
+export const useEquipmentTabs = (characters: Character[]) => {
 
     //TODO: change characters to parameter, so you can disable some you dont want to load
     const apiKey = useApiKey()
-    const {data} = useCharacters()
-
-    const characters = data?.filter(char => !!char) ?? []
 
     return useQueries({
         queries: characters.filter(char => char?.name).map(char => {

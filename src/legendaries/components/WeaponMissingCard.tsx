@@ -3,13 +3,18 @@ import {useMemo} from 'react'
 import {type CharacterEquipments} from '@/equipmentTabs/equipment-types.ts'
 import {equipmentWeaponSlots} from '@/equipmentTabs/equipment-utils.ts'
 import {type Item, ItemRarity, type Weapon, WeaponType} from '@/item/types.ts'
-import {isWeapon} from '@/item/item-utils.ts'
+import {getWeaponTypeIcon, isWeapon} from '@/item/item-utils.ts'
 import {useAccountLegendaryItems} from '@/item/item-queries.ts'
+import type {Character} from '@/character/character-types.ts'
 
-export const WeaponMissingCard = () => {
+type WeaponMissingCardProps = {
+    characters: Character[]
+}
+
+export const WeaponMissingCard = ({characters}: WeaponMissingCardProps) => {
 
     const accountLegendaryQueries = useAccountLegendaryItems()
-    const tabQueries = useEquipmentTabs()
+    const tabQueries = useEquipmentTabs(characters)
 
     // console.log('1: -- tabQueries', tabQueries?.map(query => !query.isLoading && query.data))
 
@@ -56,12 +61,19 @@ export const WeaponMissingCard = () => {
 
     console.log('equipment map', weaponEquipmentMap, Object.entries(weaponEquipmentMap))
 
+    if (!weaponEquipmentMap) {
+        return (
+            <div className={'flex flex-col bg-accent rounded-md w-full h-10'}/>
+        )
+    }
+
     return (
         <div className={'flex flex-col bg-accent rounded-md w-full'}>
             {[...weaponEquipmentMap]
                 .sort((a, b) => b[1] - a[1])
                 .map(([type, count]) => (
                         <div key={type} className={'flex gap-2'}>
+                            <img src={getWeaponTypeIcon(type)} alt={``}/>
                             <p>{type}</p>
                             <p>{count}</p>
                         </div>
