@@ -1,15 +1,10 @@
-import {CircleUser, ClipboardCheckIcon, Home, Radar, Sparkle, User} from 'lucide-react'
+import {CircleUser, Home, Radar, Sparkle, User} from 'lucide-react'
 
 export const routes = [
     {
         title: 'Home',
         path: '/',
         icon: Home,
-    },
-    {
-        title: 'Dailies',
-        path: '/daily',
-        icon: ClipboardCheckIcon,
     },
     {
         title: 'Characters',
