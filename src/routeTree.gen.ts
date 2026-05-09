@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LegendaryFinderRouteImport } from './routes/legendary-finder'
 import { Route as LegendaryRouteImport } from './routes/legendary'
-import { Route as DailyRouteImport } from './routes/daily'
 import { Route as CharactersRouteImport } from './routes/characters'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,11 +23,6 @@ const LegendaryFinderRoute = LegendaryFinderRouteImport.update({
 const LegendaryRoute = LegendaryRouteImport.update({
   id: '/legendary',
   path: '/legendary',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DailyRoute = DailyRouteImport.update({
-  id: '/daily',
-  path: '/daily',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CharactersRoute = CharactersRouteImport.update({
@@ -51,7 +45,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/characters': typeof CharactersRoute
-  '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
   '/legendary-finder': typeof LegendaryFinderRoute
 }
@@ -59,7 +52,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/characters': typeof CharactersRoute
-  '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
   '/legendary-finder': typeof LegendaryFinderRoute
 }
@@ -68,7 +60,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/characters': typeof CharactersRoute
-  '/daily': typeof DailyRoute
   '/legendary': typeof LegendaryRoute
   '/legendary-finder': typeof LegendaryFinderRoute
 }
@@ -78,23 +69,15 @@ export interface FileRouteTypes {
     | '/'
     | '/account'
     | '/characters'
-    | '/daily'
     | '/legendary'
     | '/legendary-finder'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/account'
-    | '/characters'
-    | '/daily'
-    | '/legendary'
-    | '/legendary-finder'
+  to: '/' | '/account' | '/characters' | '/legendary' | '/legendary-finder'
   id:
     | '__root__'
     | '/'
     | '/account'
     | '/characters'
-    | '/daily'
     | '/legendary'
     | '/legendary-finder'
   fileRoutesById: FileRoutesById
@@ -103,7 +86,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccountRoute: typeof AccountRoute
   CharactersRoute: typeof CharactersRoute
-  DailyRoute: typeof DailyRoute
   LegendaryRoute: typeof LegendaryRoute
   LegendaryFinderRoute: typeof LegendaryFinderRoute
 }
@@ -122,13 +104,6 @@ declare module '@tanstack/react-router' {
       path: '/legendary'
       fullPath: '/legendary'
       preLoaderRoute: typeof LegendaryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/daily': {
-      id: '/daily'
-      path: '/daily'
-      fullPath: '/daily'
-      preLoaderRoute: typeof DailyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/characters': {
@@ -159,7 +134,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccountRoute: AccountRoute,
   CharactersRoute: CharactersRoute,
-  DailyRoute: DailyRoute,
   LegendaryRoute: LegendaryRoute,
   LegendaryFinderRoute: LegendaryFinderRoute,
 }
