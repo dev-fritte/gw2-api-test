@@ -8,7 +8,10 @@ export const useLegendaries = () => useQuery<Item[]>({
     queryKey: ['legendaries'],
     queryFn: async () => fetch(`${BASE_URL}/legendaryarmory`)
         .then(res => res.json())
-        .then(res => fetch(`${BASE_URL}/items?ids=${res}`).then(res => res.json())),
+        .then(res => Array.isArray(res) ? res.slice(0, 200) : res)
+        .then(res => fetch(`${BASE_URL}/items?ids=${res}`)
+            .then(res => res.json())
+            .then(res => Array.isArray(res) ? res : [])),
     gcTime: 1000 * 60 * 60,
 })
 
